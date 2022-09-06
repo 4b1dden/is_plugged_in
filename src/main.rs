@@ -29,7 +29,7 @@ pub type IOResult<T> = Result<T, String>; // change later maybe
 
 impl IOMasterPortInterface {
     pub fn new() -> IOResult<IOMasterPortInterface> {
-        let mut master_port: mach_port_t = port::MACH_PORT_NULL;
+        let mut master_port: mach_port_t = port::MACH_PORT_NULL; // default MACH_PORT_NULL is 0
 
         unsafe {
             // TODO: Handle the possible error
@@ -125,8 +125,6 @@ extern "C" {
         matching: CFDictionaryRef,
         existing: *mut IoIteratorT,
     ) -> kern_return::kern_return_t;
-
-    pub fn IOObjectRelease(object: IoObjectT) -> kern_return::kern_return_t;
 
     pub fn IOIteratorNext(iterator: IoIteratorT) -> IoObjectT;
 
